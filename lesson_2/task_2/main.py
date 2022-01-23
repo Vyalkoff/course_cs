@@ -53,4 +53,15 @@
 а потом сохранять все в файл
 """
 
+import json
 
+
+def write_order_to_json(item, quantity, price, buyer, date):
+    with open('orders.json', 'r', encoding='utf-8') as file:
+        content = json.load(file)
+        content['orders'] = [{'item': item, 'quantity': quantity, 'price': price, 'buyer': buyer, 'date': date}]
+    with open('orders.json', 'w', encoding='utf-8') as line:
+        json.dump(content, line, indent=4, ensure_ascii=False)
+
+
+write_order_to_json("принтер", '10', '6700', "Ivanov I.I.", '24.09.2017')

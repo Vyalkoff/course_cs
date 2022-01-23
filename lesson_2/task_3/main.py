@@ -19,25 +19,14 @@ ASCII(например, €);
 совпадают ли они с исходными.
 """
 
+import yaml
 
+with open('file.yaml') as f_n:
+    f_n_content = yaml.load(f_n, Loader=yaml.Loader)  # данные для записи в виде словаря
 
+with open('file_1.yaml', 'w') as f_n_w:
+    yaml.dump(f_n_content, f_n_w, allow_unicode=True)  # default_flow_style по умолчанию стилизует под yaml
 
-
-
-
-
-
-
-
-
-
-import socket
-
-obj_sock = socket.socket()
-
-# bytes ->
-obj_sock.sendto(var, ())
-
-#close
-
-клиент 1) 2)
+with open('file_1.yaml', 'r', encoding='utf-8') as f_n_r:
+    f_n_r_content = yaml.load(f_n_r, Loader=yaml.SafeLoader)
+    print(f_n_r_content == f_n_content)
