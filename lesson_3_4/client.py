@@ -3,9 +3,9 @@
 import json
 import socket
 import time
-from lesson_3.common.variables import ACTION, USER, TIME, ACCOUNT_NAME, PRESENCE, \
+from lesson_3_4.common.variables import ACTION, USER, TIME, ACCOUNT_NAME, PRESENCE, \
     RESPONSE, ERROR
-from lesson_3.common.utils import get_message, send_message
+from lesson_3_4.common.utils import get_message, send_message
 from server import Server
 
 
