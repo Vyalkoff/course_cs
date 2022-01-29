@@ -1,11 +1,12 @@
 """Программа-сервер"""
-
+import logging
 import socket
 
 import json
 from common.variables import ACTION, TIME, ACCOUNT_NAME, USER, RESPONSE, MAX_CONNECTIONS, \
     PRESENCE, ERROR
 from common.utils import get_message, send_message
+import log.server_log_config
 
 
 class Server:
@@ -13,6 +14,7 @@ class Server:
     def __init__(self, default_address='127.0.0.1', default_port=7777):
         self.default_address = default_address
         self.default_port = default_port
+        self.Log = logging.getLogger('server')
 
     def get_address(self):
         return self.default_address, self.default_port,
@@ -28,7 +30,9 @@ class Server:
         '''
         if ACTION in message and message[ACTION] == PRESENCE and TIME in message \
                 and USER in message and message[USER][ACCOUNT_NAME] == 'Guest':
+            self.Log.info('Принят ответ')
             return {RESPONSE: 200}
+
         return {
             RESPONSE: 400,
             ERROR: 'Bad Request'
@@ -39,7 +43,7 @@ class Server:
         try:
             transport.bind((self.default_address, self.default_port))
         except OSError:
-            print(f'Адрес {self.default_address} занят. Поменяйте адрес')
+            self.Log.error(f'Адрес {self.default_address} занят. Поменяйте адрес')
 
         # Слушаем порт
 
@@ -55,48 +59,9 @@ class Server:
                 send_message(client, response)
                 client.close()
             except (ValueError, json.JSONDecodeError):
-                print('Принято некорретное сообщение от клиента.')
+                self.Log.warning('Принято некорретное сообщение от клиента.')
                 client.close()
 
-
-
-# def main():
-#     '''
-#     Загрузка параметров командной строки, если нет параметров, то задаём значения по умоланию.
-#     Сначала обрабатываем порт:
-#     server.py -p 8079 -a 192.168.1.2
-#     :return:
-#     '''
-#
-#     try:
-#         if '-p' in sys.argv:
-#             listen_port = int(sys.argv[sys.argv.index('-p') + 1])
-#         else:
-#             listen_port = DEFAULT_PORT
-#         if listen_port < 1024 or listen_port > 65535:
-#             raise ValueError
-#     except IndexError:
-#         print('После параметра -\'p\' необходимо указать номер порта.')
-#         sys.exit(1)
-#     except ValueError:
-#         print(
-#             'В качастве порта может быть указано только число в диапазоне от 1024 до 65535.')
-#         sys.exit(1)
-#
-#     # Затем загружаем какой адрес слушать
-#
-#     try:
-#         if '-a' in sys.argv:
-#             listen_address = sys.argv[sys.argv.index('-a') + 1]
-#         else:
-#             listen_address = ''
-#
-#     except IndexError:
-#         print(
-#             'После параметра \'a\'- необходимо указать адрес, который будет слушать сервер.')
-#         sys.exit(1)
-
-# Готовим сокет
 
 
 if __name__ == '__main__':

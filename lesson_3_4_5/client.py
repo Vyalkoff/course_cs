@@ -54,14 +54,12 @@ class Client:
         :param message:
         :return:
         '''
-        try:
-            if RESPONSE in message:
-                if message[RESPONSE] == 200:
-                    return '200 : OK'
-                return f'400 : {message[ERROR]}'
-            raise ValueError
-        except ValueError:
-            c_log.critical('Ошибка ответа')
+        if RESPONSE in message:
+            if message[RESPONSE] == 200:
+                return '200 : OK'
+            return f'400 : {message[ERROR]}'
+        raise ValueError
+
 
 
 if __name__ == '__main__':
