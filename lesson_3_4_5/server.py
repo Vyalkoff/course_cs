@@ -1,11 +1,11 @@
 """Программа-сервер"""
 
 import socket
-import sys
+
 import json
-from lesson_3_4.common.variables import ACTION, TIME, ACCOUNT_NAME, USER, RESPONSE, MAX_CONNECTIONS, \
+from common.variables import ACTION, TIME, ACCOUNT_NAME, USER, RESPONSE, MAX_CONNECTIONS, \
     PRESENCE, ERROR
-from lesson_3_4.common.utils import get_message, send_message
+from common.utils import get_message, send_message
 
 
 class Server:

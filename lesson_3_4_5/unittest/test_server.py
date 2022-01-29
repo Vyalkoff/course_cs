@@ -1,7 +1,7 @@
 
 import unittest
-from lesson_3_4.common.variables import RESPONSE, ERROR, USER, ACCOUNT_NAME, TIME, ACTION, PRESENCE
-from lesson_3_4.server import Server
+from lesson_3_4_5.common.variables import RESPONSE, ERROR, USER, ACCOUNT_NAME, TIME, ACTION, PRESENCE
+from lesson_3_4_5.server import Server
 
 class TestServer(unittest.TestCase):
     '''
