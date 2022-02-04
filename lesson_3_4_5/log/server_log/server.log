@@ -1,0 +1,4 @@
+2022-01-29 22:41:10,980 CRITICAL   server_log_config.py Критическая ошибка
+2022-01-29 22:41:10,980 ERROR      server_log_config.py Ошибка
+2022-01-29 22:41:10,980 WARNING    server_log_config.py Ошибка по серьезней
+2022-01-29 22:41:10,980 INFO       server_log_config.py Информация

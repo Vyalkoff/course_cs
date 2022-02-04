@@ -2,7 +2,9 @@
 
 import json
 from .variables import MAX_PACKAGE_LENGTH, ENCODING
+import logging
 
+log = logging.getLogger('server')
 def get_message(client):
     '''
     Утилита приёма и декодирования сообщения
@@ -19,6 +21,7 @@ def get_message(client):
             return response
         raise ValueError
     raise ValueError
+
 
 
 def send_message(sock, message):

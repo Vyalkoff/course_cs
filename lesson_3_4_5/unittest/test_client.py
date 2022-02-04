@@ -2,7 +2,7 @@ import sys
 import os
 import unittest
 sys.path.append(os.path.join(os.getcwd(), '..'))
-from lesson_3_4.common.variables import ACTION, USER, TIME, ACCOUNT_NAME, PRESENCE, \
+from lesson_3_4_5.common.variables import ACTION, USER, TIME, ACCOUNT_NAME, PRESENCE, \
     RESPONSE, ERROR
 from ..client import Client
 
